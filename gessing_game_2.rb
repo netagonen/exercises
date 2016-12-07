@@ -1,5 +1,4 @@
-def prompting
-  while true
+def get_num
     puts "> "
     answer = gets.chomp
     answer_as_i = answer.to_i
@@ -8,14 +7,14 @@ def prompting
       return answer_as_i
     else
       puts "This is an ERROR, you typed #{answer}, please type a positive integer"
+      get_num
     end
-  end
 end
 
 def gessing_game
     numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     number = numbers.sample
-    user_num = prompting
+    user_num = get_num
       if
        user_num == number
        puts "Amazing, you guessed right, the number was #{number}!"

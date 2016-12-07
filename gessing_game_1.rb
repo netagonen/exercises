@@ -30,15 +30,3 @@ end
 puts "Welcome to the worst gessing game in the world!"
 puts "I'm thinking of a number from 0 to 9. What is your guess?"
 gessing_game
-
-
-
-
-
-# def prompting
-#     puts "Let me think..."
-#   else
-#     puts "Wrong input! I got #{user_num} and we're expecting you to type a number between 0-9"
-#     prompting
-#   end
-# end
