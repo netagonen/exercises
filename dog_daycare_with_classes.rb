@@ -1,41 +1,41 @@
 class Dog
-  attr_accessor :breed, :name, :human_name, :friendly, :human_gen
+  attr_accessor :breed, :name, :human_name, :friendly
   #attr_reader = for getters
   #attr_writer = for setlers
 
-  def initialize(breed, name, human_name, friendly, human_gen)
+  def initialize(breed, name, human_name, friendly)
     @breed = breed
     @name = name
     @human_name = human_name
     @friendly = friendly
-    @human_gen = human_gen
   end
 
-  def barking
+  def bark
     puts "#@name says: wuf wuf!"
   end
 
-  def eating(food)
-    if food == "carrot"
-      puts "#@name says: blaaaach, I don't eat that"
-    end
-    puts "#@name is eating #{food} and thinking: mmmmmm yammy"
-  end
-
-  def sleaping
+  def sleap
     puts "#@name is actualy in...zzzzzzzzzzzzz"
   end
 
-  def playing
+  def play
     puts "#@name is thinking com'on. throw me the stick"
+  end
+
+  def eat(food)
+    if food == "carrot"
+      puts "#@name says: blaaaach, I don't eat that"
+    else
+      puts "#@name is eating #{food} and thinking: mmmmmm yammy"
+    end
   end
 
   def bite(person)
     if @friendly && person != @human_name
-      puts "I just bit you, ha ha"
+      puts "#@name says: I just bit you, ha ha"
     else
-      puts "#@name says: I can't bite, sorry!"
-    end   
+      puts "#@name says: I can't bite you, sorry!"
+    end
   end
 
   def play_together(dog)
@@ -46,22 +46,46 @@ class Dog
     end
   end
 
-  def present
-    puts "Hi, I am #@name, I am a #@breed (but that doesn't really matter) and my human's name is #@human_name"
+  def present(person)
+    puts "Hi, I am #@name, I am a #@breed (but that doesn't really matter) and my human's name is #{person.hum_name}"
   end
 end
 
-dogs = [chuchu = Dog.new("terrier", "chuchu", "david", false, "he"),
-puma = Dog.new("beagle", "puma", "orly", true, "she"),
-jimie = Dog.new("boxer", "jimie", "tal", false, "she"),
-michel = Dog.new("mixed", "michel", "neta", true, "she")]
+class Human
+  attr_accessor :hum_name, :friendly, :dog_name, :gen
+
+  def initialize(hum_name, friendly, dog_name, gen)
+    @hum_name = hum_name
+    @friendly = friendly
+    @dog_name = dog_name
+    @gen = gen
+  end
+
+  def present(dog)
+    puts "Hi, I am #@hum_name and my dog's name is #{dog.name}"
+  end
+end
+
+dogs = [chuchu = Dog.new("terrier", "chuchu", "david", false),
+puma = Dog.new("beagle", "puma", "orly", true),
+jimie = Dog.new("boxer", "jimie", "tal", false),
+michel = Dog.new("mixed", "michel", "neta", true)]
+
+david = Human.new("david", false, chuchu.name, "he")
+orly = Human.new("orly", true, puma.name, "she")
+tal = Human.new("tal", false, jimie.name, "she")
+neta = Human.new("neta", true, michel.name, "she")
+
 
 puts "the dogs in the daycare are:\n"
 dogs.each {|dog| puts dog.name}
-chuchu.present
-michel.present
-chuchu.playing
-puma.sleaping
+puts
+chuchu.present(david)
+michel.present(neta)
+orly.present(puma)
+david.present(chuchu)
+chuchu.play
+puma.sleap
 puts
 jimie.bite("orly")
 puma.bite("neta")
@@ -70,3 +94,5 @@ puts
 puma.play_together(jimie)
 puma.play_together(michel)
 puts
+puma.eat("carrot")
+jimie.eat("pizza")
