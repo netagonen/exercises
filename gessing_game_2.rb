@@ -31,8 +31,6 @@ gessing_game
 
 
 
-
-
 # def prompting
 #     puts "Let me think..."
 #   else
